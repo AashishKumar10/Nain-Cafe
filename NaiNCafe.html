@@ -1,0 +1,1021 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NaiN Café — Final Menu</title>
+    <link rel="icon" type="image/png" href="logo11.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --accent1: #ff7a3d;
+            --accent2: #ffaf66;
+            --card: #ffffff;
+            --muted: #666;
+            --border: #eee;
+            --success: #25D366;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', system-ui, Segoe UI, Roboto, Arial;
+            background: var(--bg);
+            color: #222;
+            -webkit-font-smoothing: antialiased
+        }
+
+        a {
+            color: inherit
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 220;
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06)
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+
+        .logo {
+            width: 64px;
+            height: 60px;
+            border-radius: 10px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px
+        }
+
+        .logo svg {
+            width: 44px;
+            height: 44px;
+            fill: var(--accent1)
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: "Bricolage Grotesque", sans-serif;
+
+            line-height: 1
+        }
+
+        .subline {
+            font-size: 13px;
+            font-family: "Bricolage Grotesque", sans-serif;
+
+            opacity: 0.95;
+            margin-top: 4px
+        }
+
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .cart-btn {
+            background: #fff;
+            border: 0;
+            padding: 8px 12px;
+            border-radius: 999px;
+            color: var(--accent1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700
+        }
+
+        .cart-count {
+            background: var(--accent1);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-weight: 800
+        }
+
+        .top-controls {
+            max-width: 1100px;
+            margin: 12px auto 0;
+            padding: 0 16px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            align-items: center
+        }
+
+        .search-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 680px
+        }
+
+        .search {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: #fff;
+            color: #222;
+            font-size: 15px
+        }
+
+        .suggestions {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 48px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 6px;
+            border: 1px solid var(--border);
+            display: none;
+            max-height: 260px;
+            overflow: auto;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08)
+        }
+
+        .suggestions button {
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            border-radius: 6px;
+            border: 0;
+            background: transparent;
+            color: #222;
+            cursor: pointer
+        }
+
+        .suggestions button:hover {
+            background: var(--border)
+        }
+
+        .cats {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .cat-btn {
+            background: #fff;
+            border: 1px solid var(--border);
+            color: var(--accent1);
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 15px
+        }
+
+        .cat-btn:hover {
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            color: white;
+        }
+
+        .cat-btn.active {
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            color: #fff;
+            border-color: transparent
+        }
+
+        .drinks-dropdown {
+            position: relative
+        }
+
+        .drinks-menu {
+            position: absolute;
+            top: 44px;
+            left: 0;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px;
+            display: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            z-index: 250
+        }
+
+        .drinks-menu button {
+            display: block;
+            padding: 10px 12px;
+            border: 0;
+            background: transparent;
+            width: 220px;
+            text-align: left;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #222;
+            font-size: 14px
+        }
+
+        .drinks-menu button:hover {
+            background: var(--border)
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 16px auto;
+            padding: 0 16px
+        }
+
+        .offers {
+            background: linear-gradient(90deg, #fff7ef, #fff3ea);
+            border-left: 4px solid var(--accent1);
+            border-right: 4px solid var(--accent1);
+            padding: 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            color: var(--muted);
+            margin-bottom: 12px;
+            font-weight: 600
+        }
+
+        section {
+            margin-bottom: 16px
+        }
+
+        section h2 {
+            color: var(--accent1);
+            margin: 6px 0 10px 0;
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            margin-left: 13px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+            border-bottom: 2px solid var(--accent1);
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            margin-left: 10px;
+        }
+
+        .thumb {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: #f7f5f3
+        }
+
+        .card .body {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .name-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #222;
+            font-size: 15px
+        }
+
+        .price-left {
+            color: #222;
+            font-weight: 800
+        }
+
+        .small-muted {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 6px
+        }
+
+        .seg {
+            display: inline-flex;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #fff
+        }
+
+        .seg button {
+            padding: 6px 8px;
+            border: 0;
+            background: transparent;
+            color: var(--accent1);
+            cursor: pointer;
+            font-size: 13px
+        }
+
+        .seg button.active {
+            background: var(--accent1);
+            color: #fff
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px
+        }
+
+        .add {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 0;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .cart-panel {
+            position: fixed;
+            right: 18px;
+            top: 96px;
+            width: 380px;
+            max-height: 72vh;
+            background: #fff;
+            color: #222;
+            border-radius: 12px;
+            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.12);
+            overflow: auto;
+            padding: 12px;
+            display: none;
+            z-index: 260;
+            border: 1px solid var(--border)
+        }
+
+        .cart-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border);
+            align-items: center
+        }
+
+        .cart-item img {
+            width: 64px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #f7f5f3
+        }
+
+        .cart-meta b {
+            display: block;
+            color: #111
+        }
+
+        .cart-meta small {
+            display: block;
+            color: var(--muted)
+        }
+
+        .cart-actions {
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-end
+        }
+
+        .cart-actions button {
+            background: transparent;
+            border: 1px solid var(--border);
+            padding: 6px 8px;
+            border-radius: 8px;
+            color: var(--accent1);
+            cursor: pointer
+        }
+
+        .subtotal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-weight: 800;
+            color: var(--accent1)
+        }
+
+        .table-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: #111;
+            margin-top: 10px
+        }
+
+        .note {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: #111;
+            margin-top: 8px;
+            min-height: 64px
+        }
+
+        .checkout {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 0;
+            background: var(--success);
+            color: #fff;
+            font-weight: 800;
+            margin-top: 10px;
+            cursor: pointer
+        }
+
+        .empty {
+            padding: 18px;
+            text-align: center;
+            color: var(--muted)
+        }
+
+        .foou {
+            font-size: 40px;
+        }
+
+        .jaaa {
+            display: none;
+        }
+
+        footer {
+            margin-top: 18px;
+            text-align: center;
+            padding: 14px 12px;
+            color: #fff;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500
+        }
+
+        .highlight {
+            animation: highlight 1.3s ease;
+            box-shadow: 0 12px 40px rgba(255, 174, 102, 0.12);
+            border: 1px solid rgba(255, 174, 102, 0.12)
+        }
+
+        @keyframes highlight {
+            0% {
+                transform: scale(0.995)
+            }
+
+            50% {
+                transform: scale(1.01)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        @media(max-width:900px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(min-width:901px) and (max-width:1100px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr)
+            }
+        }
+
+        @media(min-width:1101px) {
+            .grid {
+                grid-template-columns: repeat(4, 1fr)
+            }
+        }
+
+        @media(max-width:500px) {
+            .title {
+                font-family: "Bricolage Grotesque", sans-serif;
+            }
+
+            .brand {
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+
+            .cart-btn {
+                border-radius: 25px;
+                width: 106px;
+            }
+
+            .subline {
+                font-size: 13px;
+                font-family: "Bricolage Grotesque", sans-serif;
+            }
+
+            .item-name {
+                font-size: 19px;
+                margin-bottom: 5px;
+            }
+
+            .small-muted {
+                font-size: 14px;
+            }
+
+            .slash {
+                display: none;
+            }
+
+            .footer-links {
+                flex-direction: column;
+            }
+
+            .emaill {
+                display: block;
+                margin-top: 4px;
+            }
+
+            .seg {
+
+                font-size: 30px;
+                width: 114px;
+            }
+
+            .seg button {
+                font-size: 16px;
+                padding: 5px 15px;
+            }
+
+            .add {
+                width: 114px;
+            }
+
+            .foou {
+                font-size: 33px;
+                margin-bottom: 15px;
+            }
+
+            .jaaa {
+                display: block;
+            }
+
+            .offers {
+                text-align: right;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .name-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .title {
+                font-size: 1.6rem
+            }
+
+            section h2 {
+                font-size: 18px
+            }
+
+            .search {
+                font-size: 14px;
+                padding: 12px
+            }
+
+            .cat-btn {
+                border: 1px solid var(--border);
+                color: var(--accent1);
+                padding: 6px 9px;
+                border-radius: 10px;
+                cursor: pointer;
+                font-weight: 700;
+                font-size: 13px;
+            }
+
+            .top-controls {
+                display: block;
+            }
+
+            .search-wrap {
+                margin-bottom: 12px;
+            }
+
+            .top-controls {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .cats {
+                order: 1;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+
+            .search-wrap {
+                order: 2;
+                width: 100%;
+                max-width: 400px;
+                margin-bottom: 0;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="brand">
+            <div class="logo" aria-hidden="true">
+                <img src="logoo.png" alt="Nain Café Logo" style="width: 65px; height: auto; border-radius: 10px;">
+            </div>
+            <div>
+                <div class="title">Nain Café</div>
+                <div class="subline">Good taste, good vibes.</div>
+            </div>
+        </div>
+
+        <div class="top-right">
+            <button class="cart-btn" id="openCartBtn" onclick="toggleCart()" title="Open cart">
+                🛒 Cart <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="top-controls">
+        <div class="search-wrap">
+            <input id="search" class="search" placeholder="Search dishes... (Sandwich, MangoShake etc )"
+                oninput="onSearch()" autocomplete="off">
+            <div id="suggestions" class="suggestions"></div>
+        </div>
+
+        <div class="cats">
+            <button class="cat-btn active" onclick="showAll()">All</button>
+            <button class="cat-btn" onclick="scrollToSection('starters')">Starters</button>
+            <button class="cat-btn" onclick="scrollToSection('main')">Main Course</button>
+            <button class="cat-btn jaaa" onclick="scrollToSection('mithai')">Sweets</button>
+
+            <div class="drinks-dropdown">
+                <button class="cat-btn" id="drinksBtn" onclick="toggleDrinksMenu()">Drinks ▾</button>
+                <div class="drinks-menu" id="drinksMenu" aria-hidden="true">
+                    <button onclick="filterDrinks('Milk')">Milk</button>
+                    <button onclick="filterDrinks('Lassi')">Lassi</button>
+                    <button onclick="filterDrinks('ColdDrink')">Cold Drinks</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="offers">🔥 <strong>Special:</strong> Buy 4 Get 1 Free on Cold Coffee — limited time!</div>
+
+        <section id="starters">
+            <h2 class="foou">Starters</h2>
+            <div id="startersGrid" class="grid"></div>
+        </section>
+
+        <section id="main">
+            <h2 class="foou">Main Course</h2>
+            <div id="mainGrid" class="grid"></div>
+        </section>
+
+        <section id="mithai">
+            <h2 class="foou">Sweets</h2>
+            <div id="mithaiGrid" class="grid"></div>
+        </section>
+
+        <section id="drinks">
+            <h2 class="foou">Drinks</h2>
+            <div id="drinksGrid" class="grid"></div>
+        </section>
+    </main>
+
+    <div class="cart-panel" id="cartPanel" aria-hidden="true">
+        <div class="cart-head">
+            <strong>Order Cart</strong>
+            <button onclick="toggleCart()">Close</button>
+        </div>
+
+        <div id="cartItems"></div>
+        <div id="cartEmpty" class="empty" style="display:none">Your cart is empty</div>
+
+        <div class="subtotal"><span>Subtotal</span><b id="subtotal">₹0</b></div>
+        <input id="tableNo" class="table-input" placeholder="Table number (1–20 required)">
+        <textarea id="note" class="note" placeholder="Optional note (e.g. less spice)"></textarea>
+        <button class="checkout" onclick="checkoutWhatsApp()">Order on WhatsApp</button>
+    </div>
+
+    <footer>
+        <div id="location-text">📍 Near Jaat Chowk, Bhadra</div>
+        <div class="footer-links">
+            <a href="tel:+917568400241">📞 +91 7568400241</a>
+            <span class="slash"> &nbsp; | &nbsp;</span>
+            <a href="mailto:aashishnain10@gmail.com" class="emaill">✉️ aashishnain10@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>
+        const MENU = [
+
+            // Starters (7)
+
+            { id: 's1', cat: 'Starters', name: 'French Fries', base: 100, img: 'https://crownful.s3.amazonaws.com/recipe/6c46024a2d6a4a6499c5a1a62d8cdd5b.png' },
+            { id: 's2', cat: 'Starters', name: 'Steamed Momos', base: 150, img: 'https://www.thespruceeats.com/thmb/UnVh_-znw7ikMUciZIx5sNqBtTU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/steamed-momos-wontons-1957616-hero-01-1c59e22bad0347daa8f0dfe12894bc3c.jpg' },
+            { id: 's3', cat: 'Starters', name: 'Paneer Momos', base: 200, img: 'https://5.imimg.com/data5/QG/BM/XQ/SELLER-21740637/momo-blog-500x500.jpg' },
+            { id: 's4', cat: 'Starters', name: 'Paneer Chaumin', base: 150, img: 'https://rajdarbarhotelandrestaurant.com/wp-content/uploads/2025/01/082c8865152d60dfa07af428a523a486.jpg' },
+            { id: 's5', cat: 'Starters', name: 'Masala Maggi', base: 100, img: 'https://i.ytimg.com/vi/VbQ8kyIXqXM/hq720.jpg' },
+            { id: 's6', cat: 'Starters', name: 'Cheese Sandwich', base: 200, img: 'https://www.bigbasket.com/media/uploads/recipe/w-l/3647_1_1.jpg' },
+            { id: 's7', cat: 'Starters', name: 'Spring Roll', base: 200, img: 'https://ourlittlenook.com/wp-content/uploads/2021/01/IMG_0243-2-1080x1062.jpg' },
+            { id: 's8', cat: 'Starters', name: 'Paneer Tikka', base: 250, img: 'https://sharethespice.com/wp-content/uploads/2024/02/Paneer-Tikka-Featured.jpg' },
+            { id: 's9', cat: 'Starters', name: 'Pav Bhaji', base: 200, img: 'https://i0.wp.com/ahappytreat.com/wp-content/uploads/2017/04/DSC_0287_new-2.jpg?fit=6000%2C4000&ssl=1' },
+            { id: 's10', cat: 'Starters', name: 'Chili Potato', base: 150, img: 'https://i.ytimg.com/vi/IXQHDp3sHME/maxresdefault.jpg' },
+            { id: 's11', cat: 'Starters', name: 'Manchurian', base: 250, img: 'https://www.awesomecuisine.com/wp-content/uploads/2018/07/cabbage_manchurian_dry.jpg' },
+
+            // Main Course (11)
+
+            { id: 'm1', cat: 'Main Course', name: 'Paneer Butter Masala', base: 250, img: 'https://www.indianhealthyrecipes.com/wp-content/uploads/2023/07/paneer-butter-masala-recipe.jpg' },
+            { id: 'm2', cat: 'Main Course', name: 'Shahi Paneer', base: 300, img: 'https://images.archanaskitchen.com/images/recipes/indian/main-course/north-indian-vegetarian-recipes/sabzi-recipes/Shahi_Paneer_Recipe_1_7e7be6ae9b.jpg' },
+            { id: 'm3', cat: 'Main Course', name: 'Dal Makhani', base: 200, img: 'https://img.taste.com.au/2jFM6dqv/w1200-h675-cfill-q80/taste/2025/03/dal-makhani-indian-butter-lentils-2-208408-1.jpg' },
+            { id: 'm4', cat: 'Main Course', name: 'Bhindi Masala', base: 150, img: 'https://www.anveshan.farm/cdn/shop/articles/BhindiMasala.jpg?v=1690790485&width=1100' },
+            { id: 'm5', cat: 'Main Course', name: 'Mixed Veg', base: 150, img: 'https://www.bharatmasala.com/wp-content/uploads/2024/07/Gemini_Generated_Image_lt9nvalt9nvalt9n-1000x565.jpeg' },
+            { id: 'm6', cat: 'Main Course', name: 'Aloo Matar', base: 200, img: 'https://lh7-us.googleusercontent.com/ZRuQGPvsUGM6X3y8x-BO2EOrH86MAhEtyaGDccvnnq5ZTCWrnscpsfYtwAxNyJ4dX47r6PMeNaHmq4FpBvqCHc8Tkq83eQzC78KDI5hdmgUXDR-w806wDHs9PY7DAPQ_i3TcGM0CWuaGtsZUcyj12Lk' },
+            { id: 'm7', cat: 'Main Course', name: 'Chole Masala', base: 200, img: 'https://images.news18.com/ibnkhabar/uploads/2025/05/dr.-meera-2025-05-c74a69df525b6934974003522eaebe3e.jpg' },
+            { id: 'm7', cat: 'Main Course', name: 'Sangri', base: 300, img: 'https://images.archanaskitchen.com/images/recipes/indian/main-course/north-indian-vegetarian-recipes/sabzi-recipes/Rajasthani_Vegetarian_Ker_Sangri_Sabzi_Recipe_Archanas_Kitchen_3_a91be5b53b.jpg' },
+            { id: 'm8', cat: 'Main Course', name: 'Butter Tava Roti', base: 30, img: 'https://veerraghav-naivedyam.com/wp-content/uploads/2025/01/187.jpg' },
+            { id: 'm9', cat: 'Main Course', name: 'Naan', base: 50, img: 'https://fullofplants.com/wp-content/uploads/2019/05/potato-stuffed-naan-vegan-thumb-2.jpg' },
+            { id: 'm10', cat: 'Main Course', name: 'Roti', base: 20, img: 'https://desikhana.in/cdn/shop/files/Roti_1kg_aa381500-9455-4647-8cf9-ab2271df3afc.png?v=1735646556' },
+            { id: 'm11', cat: 'Main Course', name: 'Paratha', base: 60, img: 'https://butfirstchai.com/wp-content/uploads/2022/08/pumpkin-paratha-recipe.jpg' },
+            { id: 'm12', cat: 'Main Course', name: 'Veg Fried Rice', base: 150, img: 'https://s.lightorangebean.com/media/20240914154201/Mixed-Veg-Rice-Delight_-done.png' },
+            { id: 'm13', cat: 'Main Course', name: 'Rice', base: 100, img: 'https://www.indianhealthyrecipes.com/wp-content/uploads/2023/07/basmati-rice-recipe.jpg' },
+
+            // Mithai (between Main and Drinks)
+
+            { id: 't1', cat: 'Mithai', name: 'Rasgulla (2 pc)', base: 50, img: 'https://madhurasrecipe.com/wp-content/uploads/2023/10/Rasgulla-Featured-Image.jpg' },
+            { id: 't2', cat: 'Mithai', name: 'Gulab Jamun (2 pc)', base: 50, img: 'https://www.masala.tv/wp-content/uploads/2017/06/Kala-Jamun.jpg' },
+            { id: 't3', cat: 'Mithai', name: 'Kaju Katli (2 pc)', base: 100, img: 'https://images.slurrp.com/webstories/wp-content/uploads/2025/07/kaju_katli_kaju_barfi_recipe-1.jpg' },
+            { id: 't4', cat: 'Mithai', name: 'Doda Barfi (2 pc)', base: 50, img: 'https://almondhouse.com/cdn/shop/files/IMG_1336.jpg?v=1703150462&width=4000' },
+            { id: 't5', cat: 'Mithai', name: 'Jalebi (200 gm)', base: 100, img: 'https://binjalsvegkitchen.com/wp-content/uploads/2023/10/Instant-Jalebi-H1.jpg' },
+            { id: 't6', cat: 'Mithai', name: 'MotiChoor Laddu (180 gm)', base: 100, img: 'https://bhagvatprasadam.com/cdn/shop/files/188_motichur.webp?v=1760158514&width=720' },
+            { id: 't7', cat: 'Mithai', name: 'Peda (2 pc)', base: 50, img: 'https://i0.wp.com/www.lovelaughmirch.com/wp-content/uploads/2015/09/Dhood_Peda_2.jpg' },
+            { id: 't8', cat: 'Mithai', name: 'Rasmalai (200 gm)', base: 150, img: 'https://kandrafoods.com/wp-content/uploads/2021/06/Rasmalai-recipe-2.jpg' },
+            { id: 't9', cat: 'Mithai', name: 'Malpua (100 gm)', base: 100, img: 'https://madhurasrecipe.com/wp-content/uploads/2020/10/Malpua-Hindi-Recipe.jpg' },
+            { id: 't10', cat: 'Mithai', name: 'Balushai (2 pc)', base: 50, img: 'https://www.chefajaychopra.com/assets/img/recipe/1-1666076526HalwaiStyleBalushahiwebp.webp' },
+
+            // Drinks (with subtype)
+
+            { id: 'd1', cat: 'Drinks', name: 'Cold Coffee', base: 200, img: 'https://media.assettype.com/freepressjournal/2023-01/b35364ef-cc4a-4401-93b1-4fa180b19e3c/ghnb.jpg' },
+            { id: 'd2', cat: 'Drinks', name: 'Fruit Punch', base: 150, img: 'https://creative-culinary.com/wp-content/uploads/Fruit-Punch-Champagne-Cocktail-2.jpg' },
+            { id: 'd3', cat: 'Drinks', name: 'Badam Milk', base: 200, img: 'https://cdn.shopify.com/s/files/1/0746/0952/5042/files/Badam_Milk_Recipe_600x600.jpg?v=1755604846' },
+            { id: 'd4', cat: 'Drinks', name: 'Kesar Milk', base: 300, img: 'https://badshahsaffroncompany.com/wp-content/uploads/2023/10/saffron_milk.jpg' },
+            { id: 'd5', cat: 'Drinks', name: 'Sweet Lassi', base: 100, img: 'https://www.blendwithspices.com/wp-content/uploads/2020/07/lassirecipe.jpg' },
+            { id: 'd6', cat: 'Drinks', name: 'Salted Lassi', base: 50, img: 'https://j6e2i8c9.delivery.rocketcdn.me/wp-content/uploads/2015/05/lassi_food_1.jpg' },
+            { id: 'd7', cat: 'Drinks', name: 'Rabri', base: 150, img: 'https://j6e2i8c9.delivery.rocketcdn.me/wp-content/uploads/2015/11/rabdi-recipe-2.jpg.webp' },
+            { id: 'd8', cat: 'Drinks', name: 'Mango Shake', base: 150, img: 'https://i0.wp.com/mariasmenu.com/wp-content/uploads/Mango-Milkshake.png?fit=625%2C886&ssl=1' },
+            { id: 'd9', cat: 'Drinks', name: 'Banana Shake', base: 150, img: 'https://ichef.bbc.co.uk/ace/standard/1600/food/recipes/banana_milkshake_73300_16x9.jpg.webp' },
+            { id: 'd10', cat: 'Drinks', name: 'PineApple Shake', base: 150, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRC4tuJjg6lLdJOMhg6PI6lahya4BsATxJ1w&s' },
+            { id: 'd10', cat: 'Drinks', name: 'Apple Juice', base: 200, img: 'https://joyfoodsunshine.com/wp-content/uploads/2023/09/banana-apple-smoothie-recipe-4.jpg' },
+            { id: 'd10', cat: 'Drinks', name: 'Pomegranate Juice', base: 250, img: 'https://static.toiimg.com/thumb/resizemode-4,width-1280,height-720,msid-120121618/120121618.jpg' },
+            { id: 'd10', cat: 'Drinks', name: 'Sprite', base: 100, img: 'https://m.media-amazon.com/images/I/71-741KOEPL._AC_UF894,1000_QL80_.jpg' },
+            { id: 'd10', cat: 'Drinks', name: 'Coca Cola', base: 100, img: 'https://images.stockcake.com/public/b/a/5/ba51f1c9-d63f-47b9-a3fd-25b49672129c_large/coca-cola-pouring-moment-stockcake.jpg' },
+            { id: 'd10', cat: 'Drinks', name: 'ThumsUp', base: 100, img: 'https://media.istockphoto.com/id/1062831310/photo/pour-soft-drink-in-glass-with-ice-splash-on-dark-background.jpg?s=612x612&w=0&k=20&c=XlLTcFQ0FqcTWRa9QniHgpjlkdFrOJGJFGm5jg_TAAw=' },
+        ];
+
+        let CART = {};
+        const PHONE = '917568400241';
+
+        function priceHalf(base) { return Math.max(Math.round(base * 0.6), 1); }
+        function fmt(n) { return '₹' + n; }
+
+        function makeCard(item) {
+            const half = priceHalf(item.base), full = item.base;
+            const wrap = document.createElement('div'); wrap.className = 'card';
+            wrap.innerHTML = `
+        <img class="thumb" src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/800x500?text=${encodeURIComponent(item.name)}'">
+        <div class="body">
+          <div class="name-row">
+            <div>
+              <div class="item-name">${item.name}</div>
+              <div class="small-muted">${fmt(half)} / ${fmt(full)}${item.sub ? ' · ' + item.sub : ''}</div>
+            </div>
+            <div class="price-row">
+              <div class="seg" id="seg-${item.id}" data-choice="half">
+                <button class="active" data-val="half" onclick="segToggle(event,'${item.id}')">Half</button>
+                <button data-val="full" onclick="segToggle(event,'${item.id}')">Full</button>
+              </div>
+            </div>
+          </div>
+          <div class="controls">
+            <button class="add" onclick="addToCart('${item.id}')">Add to Cart</button>
+          </div>
+        </div>
+      `;
+            return wrap;
+        }
+
+        function renderAll() {
+            const s = document.getElementById('startersGrid'), m = document.getElementById('mainGrid'), d = document.getElementById('drinksGrid'), t = document.getElementById('mithaiGrid');
+            s.innerHTML = ''; m.innerHTML = ''; d.innerHTML = ''; t.innerHTML = '';
+            MENU.forEach(it => {
+                const c = makeCard(it);
+                if (it.cat === 'Starters') s.appendChild(c);
+                else if (it.cat === 'Main Course') m.appendChild(c);
+                else if (it.cat === 'Mithai') t.appendChild(c);
+                else if (it.cat === 'Drinks') d.appendChild(c);
+            });
+        }
+
+        function segToggle(e, id) {
+            const seg = document.getElementById('seg-' + id);
+            Array.from(seg.children).forEach(b => b.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            seg.dataset.choice = e.currentTarget.dataset.val;
+        }
+
+        /* CART */
+        function addToCart(id) {
+            const item = MENU.find(x => x.id === id);
+            const seg = document.getElementById('seg-' + id);
+            const choice = seg?.dataset.choice || 'half';
+            const unit = (choice === 'half') ? priceHalf(item.base) : item.base;
+            const key = id + '|' + choice;
+            if (CART[key]) CART[key].qty += 1; else CART[key] = { id: item.id, name: item.name, choice, unit, qty: 1, img: item.img };
+            saveCart(); renderCart(); flashAdded(id);
+        }
+
+        function flashAdded(id) {
+            const seg = document.getElementById('seg-' + id);
+            const card = seg?.closest('.card');
+            if (card) { card.style.boxShadow = '0 12px 30px rgba(255,122,61,0.18)'; setTimeout(() => card.style.boxShadow = '', 700); }
+            updateCartCount();
+        }
+
+        function saveCart() { localStorage.setItem('nain_cart_final', JSON.stringify(CART)); }
+        function loadCart() { const t = localStorage.getItem('nain_cart_final'); CART = t ? JSON.parse(t) : {}; renderCart(); updateCartCount(); }
+
+        function renderCart() {
+            const wrap = document.getElementById('cartItems'); wrap.innerHTML = '';
+            const keys = Object.keys(CART);
+            if (!keys.length) { document.getElementById('cartEmpty').style.display = 'block'; document.getElementById('cartItems').style.display = 'none'; document.getElementById('subtotal').textContent = fmt(0); return; }
+            document.getElementById('cartEmpty').style.display = 'none'; document.getElementById('cartItems').style.display = 'block';
+            let subtotal = 0;
+            keys.forEach(k => {
+                const it = CART[k]; subtotal += it.unit * it.qty;
+                const row = document.createElement('div'); row.className = 'cart-item';
+                row.innerHTML = `
+          <img src="${it.img}" onerror="this.src='https://via.placeholder.com/200x120?text=${encodeURIComponent(it.name)}'">
+          <div class="cart-meta"><b>${it.name} (${it.choice === 'half' ? 'Half' : 'Full'}) × ${it.qty}</b><small>${fmt(it.unit)} each</small></div>
+          <div class="cart-actions">
+            <div style="display:flex;gap:6px">
+              <button onclick="inc('${k}')">+</button>
+              <button onclick="dec('${k}')">−</button>
+            </div>
+            <button class="trash" onclick="removeItem('${k}')">Remove</button>
+          </div>
+        `;
+                wrap.appendChild(row);
+            });
+            document.getElementById('subtotal').textContent = fmt(subtotal);
+        }
+
+        function inc(k) { CART[k].qty++; saveCart(); renderCart(); updateCartCount(); }
+        function dec(k) { CART[k].qty--; if (CART[k].qty <= 0) delete CART[k]; saveCart(); renderCart(); updateCartCount(); }
+        function removeItem(k) { delete CART[k]; saveCart(); renderCart(); updateCartCount(); }
+        function updateCartCount() { const n = Object.values(CART).reduce((s, i) => s + i.qty, 0); document.getElementById('cartCount').textContent = n; }
+
+        function toggleCart() { const p = document.getElementById('cartPanel'); p.style.display = p.style.display === 'block' ? 'none' : 'block'; }
+
+        function checkoutWhatsApp() {
+            const keys = Object.keys(CART); if (!keys.length) { alert('Cart is empty'); return; }
+            const tableStr = document.getElementById('tableNo').value.trim();
+            if (!tableStr) { alert('Please enter table number (1–20)'); return; }
+            const table = parseInt(tableStr, 10);
+            if (Number.isNaN(table) || table < 1 || table > 20) { alert('Please enter a valid table number (1–20)'); return; }
+            const note = document.getElementById('note').value.trim();
+            let subtotal = 0, lines = [];
+            keys.forEach(k => { const it = CART[k]; subtotal += it.unit * it.qty; lines.push(`${it.name} (${it.choice === 'half' ? 'Half' : 'Full'} - ₹${it.unit}) × ${it.qty}`); });
+            let msg = `Table No. ${table} Order:%0A%0A` + lines.map(l => encodeURIComponent('- ' + l)).join('%0A');
+            msg += `%0A%0ASubtotal: ₹${subtotal}`; if (note) msg += `%0A%0ANote: ${encodeURIComponent(note)}`; msg += `%0A%0A🌸 Kindly drop a quick “OK” to confirm your order..`;
+            setTimeout(() => { window.open(`https://wa.me/${PHONE}?text=${msg}`, '_blank'); }, 150);
+        }
+
+        const suggestionsEl = document.getElementById('suggestions');
+        function onSearch() {
+            const q = document.getElementById('search').value.trim().toLowerCase();
+            if (!q) { suggestionsEl.style.display = 'none'; showAll(); return; }
+            const matches = MENU.filter(i => i.name.toLowerCase().includes(q)).slice(0, 8);
+            suggestionsEl.innerHTML = '';
+            if (matches.length === 0) { suggestionsEl.innerHTML = `<div style="padding:8px;color:var(--muted)">No suggestions</div>`; suggestionsEl.style.display = 'block'; return; }
+            matches.forEach(m => { const btn = document.createElement('button'); btn.textContent = m.name; btn.onclick = () => selectSuggestion(m.id); suggestionsEl.appendChild(btn); });
+            suggestionsEl.style.display = 'block';
+            document.querySelectorAll('.card').forEach(card => {
+                const title = card.querySelector('.item-name').textContent.toLowerCase();
+                card.style.display = title.includes(q) ? 'flex' : 'none';
+            });
+            ['starters', 'main', 'mithai', 'drinks'].forEach(secId => {
+                const sec = document.getElementById(secId);
+                const anyVisible = Array.from(sec.querySelectorAll('.card')).some(c => c.style.display !== 'none');
+                sec.style.display = anyVisible ? 'block' : 'none';
+            });
+        }
+
+        function selectSuggestion(id) {
+            showAll(); suggestionsEl.style.display = 'none';
+            const seg = document.getElementById('seg-' + id);
+            if (seg) { const card = seg.closest('.card'); card.scrollIntoView({ behavior: 'smooth', block: 'center' }); card.classList.add('highlight'); setTimeout(() => card.classList.remove('highlight'), 1500); }
+            document.getElementById('search').value = '';
+            setTimeout(() => showAll(), 500);
+        }
+
+        function showAll() {
+            document.querySelectorAll('section').forEach(sec => sec.style.display = 'block');
+            document.querySelectorAll('.card').forEach(c => c.style.display = 'flex');
+            suggestionsEl.style.display = 'none';
+            document.querySelectorAll('.cat-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+        }
+
+        function toggleDrinksMenu() { const m = document.getElementById('drinksMenu'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; }
+        function filterDrinks(sub) {
+            document.getElementById('drinks').style.display = 'block';
+            document.querySelectorAll('#drinksGrid .card').forEach(card => {
+                const meta = card.querySelector('.small-muted').textContent.toLowerCase();
+                if (sub === 'All') card.style.display = 'flex'; else card.style.display = meta.includes(sub.toLowerCase()) ? 'flex' : 'none';
+            });
+            document.getElementById('drinksMenu').style.display = 'none';
+        }
+
+        function scrollToSection(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+
+        renderAll();
+        loadCart();
+        document.addEventListener('click', (e) => {
+            if (!document.querySelector('.search-wrap').contains(e.target)) suggestionsEl.style.display = 'none';
+            if (!document.querySelector('.drinks-dropdown').contains(e.target)) document.getElementById('drinksMenu').style.display = 'none';
+        });
+    </script>
+
+</body>
+
+</html>
